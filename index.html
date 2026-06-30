@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soudeur 66 — Soudure, chaudronnerie & tuyauterie inox à Perpignan</title>
+<meta name="description" content="Artisan soudeur à Perpignan (66). Chaudronnerie inox, tuyauterie industrielle, cuves sur mesure, garde-corps et escaliers, réparation. Soudure TIG et MIG/MAG sur inox, aluminium et acier.">
+<meta name="theme-color" content="#14181c">
+<link rel="icon" type="image/png" href="assets/img/favicon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Soudeur 66 — Soudure & chaudronnerie inox à Perpignan">
+<meta property="og:description" content="Chaudronnerie, tuyauterie et métallerie inox sur mesure. TIG / MIG-MAG. Atelier et sur site dans les Pyrénées-Orientales.">
+<meta property="og:image" content="assets/img/cordon-tig.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --steel-950:#14181c;
+    --steel-900:#1a2026;
+    --steel-850:#1f262d;
+    --steel-800:#272f37;
+    --steel-700:#36414b;
+    --line:#2c353d;
+    --txt:#e8edf1;
+    --txt-mut:#9aa6b0;
+    --txt-dim:#6c7882;
+    /* couleurs de revenu de l'inox (heat tint) */
+    --gold:#d9a441;
+    --rose:#cf7351;
+    --violet:#8071b8;
+    --blue:#3f88bf;
+    --bead:linear-gradient(90deg,#d9a441 0%,#cf7351 32%,#8071b8 64%,#3f88bf 100%);
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--steel-950);
+    color:var(--txt);
+    font-family:'Inter',system-ui,sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+  .mono{font-family:'IBM Plex Mono',monospace}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--txt-dim);display:inline-flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{content:"";width:26px;height:2px;background:var(--bead);border-radius:2px}
+
+  h1,h2,h3{font-family:'Archivo',sans-serif;line-height:1.02;letter-spacing:-.02em}
+
+  /* ---------- bead divider (signature) ---------- */
+  .bead{height:2px;width:100%;background:var(--bead);position:relative;opacity:.9;border-radius:2px}
+  .bead::after{
+    content:"";position:absolute;inset:0;border-radius:2px;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.85),transparent);
+    background-size:30% 100%;background-repeat:no-repeat;
+    animation:run 5.5s linear infinite;
+  }
+  @keyframes run{0%{background-position:-30% 0}100%{background-position:130% 0}}
+
+  /* ---------- header ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    background:rgba(20,24,28,.6);backdrop-filter:blur(12px);
+    border-bottom:1px solid transparent;transition:background .3s,border-color .3s;
+  }
+  header.scrolled{background:rgba(20,24,28,.92);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+  .brand{display:flex;align-items:center;gap:0}
+  .plate{
+    background:#f3f5f7;border-radius:8px;padding:7px 12px;
+    display:flex;align-items:center;box-shadow:0 2px 10px rgba(0,0,0,.35);
+  }
+  .plate img{height:30px;width:auto}
+  .nav-links{display:flex;align-items:center;gap:34px}
+  .nav-links a{font-size:.92rem;color:var(--txt-mut);transition:color .2s;position:relative}
+  .nav-links a:hover{color:var(--txt)}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;height:2px;width:0;background:var(--bead);transition:width .25s}
+  .nav-links a:hover::after{width:100%}
+
+  .btn{
+    font-family:'Archivo',sans-serif;font-weight:700;font-size:.9rem;letter-spacing:.01em;
+    padding:12px 20px;border-radius:9px;cursor:pointer;border:none;
+    display:inline-flex;align-items:center;gap:9px;transition:transform .15s,box-shadow .2s,background .2s;
+  }
+  .btn-primary{background:var(--bead);color:#16191d}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(207,115,81,.32)}
+  .btn-ghost{background:transparent;color:var(--txt);border:1px solid var(--steel-700)}
+  .btn-ghost:hover{border-color:var(--gold);color:#fff}
+  .nav .btn{padding:11px 18px}
+
+  .burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
+  .burger span{width:24px;height:2px;background:var(--txt);border-radius:2px;transition:.3s}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;min-height:100svh;display:flex;align-items:center;padding-top:74px;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;z-index:0}
+  .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 60%}
+  .hero-bg::after{
+    content:"";position:absolute;inset:0;
+    background:
+      linear-gradient(90deg,rgba(20,24,28,.96) 0%,rgba(20,24,28,.82) 42%,rgba(20,24,28,.45) 100%),
+      linear-gradient(0deg,rgba(20,24,28,.95) 0%,transparent 45%);
+  }
+  .hero-inner{position:relative;z-index:2;width:100%;padding:60px 0}
+  .hero h1{
+    font-weight:900;font-size:clamp(2.5rem,6.5vw,5rem);margin:22px 0 0;max-width:16ch;
+  }
+  .hero h1 .hl{
+    background:var(--bead);-webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero p.lead{font-size:clamp(1.05rem,1.7vw,1.3rem);color:var(--txt-mut);max-width:48ch;margin:24px 0 34px}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+  .hero-specs{display:flex;flex-wrap:wrap;gap:0;margin-top:46px;border-top:1px solid var(--line);padding-top:24px;max-width:680px}
+  .spec{padding-right:34px;margin-right:34px;border-right:1px solid var(--line)}
+  .spec:last-child{border-right:none}
+  .spec .k{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.16em;color:var(--txt-dim);text-transform:uppercase}
+  .spec .v{font-family:'Archivo',sans-serif;font-weight:700;font-size:1.05rem;margin-top:4px}
+
+  /* ---------- sections ---------- */
+  section{padding:108px 0}
+  .sec-head{max-width:640px;margin-bottom:54px}
+  .sec-head h2{font-weight:800;font-size:clamp(2rem,4vw,3.1rem);margin-top:18px}
+  .sec-head p{color:var(--txt-mut);margin-top:16px;font-size:1.06rem}
+
+  /* métier cards */
+  .grid-metier{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .card{
+    background:linear-gradient(180deg,var(--steel-850),var(--steel-900));
+    border:1px solid var(--line);border-radius:16px;padding:30px 28px;
+    transition:transform .25s,border-color .25s,box-shadow .25s;position:relative;overflow:hidden;
+  }
+  .card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--bead);transform:scaleX(0);transform-origin:left;transition:transform .35s}
+  .card:hover{transform:translateY(-5px);border-color:var(--steel-700);box-shadow:0 18px 40px rgba(0,0,0,.4)}
+  .card:hover::before{transform:scaleX(1)}
+  .card .num{font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:var(--gold);letter-spacing:.1em}
+  .card h3{font-weight:700;font-size:1.32rem;margin:14px 0 12px}
+  .card p{color:var(--txt-mut);font-size:.97rem}
+
+  /* matériaux band */
+  .materiaux{background:var(--steel-900);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .mat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+  .mat{padding:14px 36px 14px 0;margin-right:36px;border-right:1px solid var(--line)}
+  .mat:last-child{border-right:none;margin-right:0}
+  .mat .code{font-family:'IBM Plex Mono',monospace;color:var(--blue);font-size:.8rem;letter-spacing:.12em}
+  .mat h3{font-weight:800;font-size:1.7rem;margin:6px 0 8px}
+  .mat p{color:var(--txt-mut);font-size:.93rem}
+
+  /* réalisations */
+  .filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:30px}
+  .chip{
+    font-family:'IBM Plex Mono',monospace;font-size:.8rem;letter-spacing:.05em;
+    background:var(--steel-850);border:1px solid var(--line);color:var(--txt-mut);
+    padding:9px 16px;border-radius:999px;cursor:pointer;transition:.2s;
+  }
+  .chip:hover{color:var(--txt);border-color:var(--steel-700)}
+  .chip.active{background:var(--bead);color:#16191d;border-color:transparent;font-weight:500}
+
+  .gallery{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
+    grid-auto-rows:190px;grid-auto-flow:dense;gap:14px;
+  }
+  figure.shot{
+    position:relative;border-radius:14px;overflow:hidden;cursor:pointer;
+    grid-row:span 2;border:1px solid var(--line);background:var(--steel-900);
+  }
+  figure.shot.wide{grid-column:span 2}
+  figure.shot.tall{grid-row:span 3}
+  figure.shot img{width:100%;height:100%;object-fit:cover;transition:transform .5s,filter .3s;filter:grayscale(.12) brightness(.94)}
+  figure.shot:hover img{transform:scale(1.06);filter:grayscale(0) brightness(1)}
+  figure.shot figcaption{
+    position:absolute;left:0;right:0;bottom:0;padding:34px 16px 14px;
+    background:linear-gradient(0deg,rgba(15,18,21,.92),transparent);
+    font-size:.85rem;color:var(--txt);opacity:0;transform:translateY(8px);transition:.3s;
+  }
+  figure.shot figcaption .tag{font-family:'IBM Plex Mono',monospace;font-size:.68rem;color:var(--gold);letter-spacing:.12em;display:block;text-transform:uppercase;margin-bottom:3px}
+  figure.shot:hover figcaption{opacity:1;transform:none}
+  figure.shot.hide{display:none}
+
+  /* méthode */
+  .methode{background:var(--steel-900);border-top:1px solid var(--line)}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;counter-reset:s}
+  .step{position:relative;padding-top:28px}
+  .step .st-num{font-family:'Archivo',sans-serif;font-weight:900;font-size:2.4rem;background:var(--bead);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
+  .step h3{font-weight:700;font-size:1.18rem;margin:12px 0 10px}
+  .step p{color:var(--txt-mut);font-size:.95rem}
+  .step::before{content:"";position:absolute;top:0;left:0;width:46px;height:3px;background:var(--bead);border-radius:3px}
+
+  /* contact */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start}
+  .contact-info .row{display:flex;gap:16px;align-items:flex-start;padding:18px 0;border-bottom:1px solid var(--line)}
+  .contact-info .row:last-child{border-bottom:none}
+  .contact-info .ic{
+    width:42px;height:42px;flex:none;border-radius:10px;background:var(--steel-850);border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;color:var(--gold);
+  }
+  .contact-info .ic svg{width:20px;height:20px}
+  .contact-info .lbl{font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.14em;color:var(--txt-dim);text-transform:uppercase}
+  .contact-info .val{font-family:'Archivo',sans-serif;font-weight:700;font-size:1.2rem;margin-top:2px}
+  .contact-info .val:hover{color:var(--gold)}
+  .socials{display:flex;gap:12px;margin-top:24px}
+  .socials a{width:42px;height:42px;border-radius:10px;background:var(--steel-850);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--txt-mut);transition:.2s}
+  .socials a:hover{color:#fff;border-color:var(--gold);transform:translateY(-2px)}
+  .socials svg{width:19px;height:19px}
+
+  form{background:var(--steel-850);border:1px solid var(--line);border-radius:16px;padding:30px}
+  form .fld{margin-bottom:16px}
+  form label{display:block;font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--txt-dim);margin-bottom:7px}
+  form input,form textarea{
+    width:100%;background:var(--steel-950);border:1px solid var(--line);border-radius:9px;
+    padding:12px 14px;color:var(--txt);font-family:'Inter',sans-serif;font-size:.96rem;transition:border-color .2s;
+  }
+  form input:focus,form textarea:focus{outline:none;border-color:var(--gold)}
+  form textarea{resize:vertical;min-height:110px}
+  form .btn-primary{width:100%;justify-content:center;margin-top:6px}
+  .form-note{font-size:.82rem;color:var(--txt-dim);margin-top:12px;text-align:center}
+
+  /* footer */
+  footer{background:var(--steel-950);border-top:1px solid var(--line);padding:54px 0 30px}
+  .foot-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:30px;align-items:flex-start}
+  .foot-brand{max-width:330px}
+  .foot-brand .plate{display:inline-flex;margin-bottom:16px}
+  .foot-brand p{color:var(--txt-mut);font-size:.92rem}
+  .foot-col h4{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--txt-dim);margin-bottom:14px}
+  .foot-col a,.foot-col span{display:block;color:var(--txt-mut);font-size:.92rem;margin-bottom:9px;transition:color .2s}
+  .foot-col a:hover{color:var(--gold)}
+  .foot-bot{margin-top:40px;padding-top:22px;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.8rem;color:var(--txt-dim)}
+  .foot-bot a{color:var(--txt-dim)}
+  .foot-bot a:hover{color:var(--txt-mut)}
+
+  /* lightbox */
+  .lb{position:fixed;inset:0;z-index:100;background:rgba(10,12,14,.95);display:none;align-items:center;justify-content:center}
+  .lb.open{display:flex}
+  .lb img{max-width:90vw;max-height:82vh;border-radius:8px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+  .lb-cap{position:absolute;bottom:28px;left:0;right:0;text-align:center;color:var(--txt);font-size:.95rem}
+  .lb-cap .tag{font-family:'IBM Plex Mono',monospace;color:var(--gold);font-size:.72rem;letter-spacing:.14em;display:block;margin-bottom:4px;text-transform:uppercase}
+  .lb-btn{position:absolute;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:#fff;width:50px;height:50px;border-radius:50%;cursor:pointer;font-size:1.4rem;display:flex;align-items:center;justify-content:center;transition:.2s}
+  .lb-btn:hover{background:rgba(255,255,255,.18)}
+  .lb-close{top:22px;right:22px}
+  .lb-prev{left:22px;top:50%;transform:translateY(-50%)}
+  .lb-next{right:22px;top:50%;transform:translateY(-50%)}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* responsive */
+  @media(max-width:900px){
+    .grid-metier{grid-template-columns:repeat(2,1fr)}
+    .steps{grid-template-columns:repeat(2,1fr)}
+    .contact-grid{grid-template-columns:1fr;gap:34px}
+    .mat-grid{grid-template-columns:1fr;gap:0}
+    .mat{border-right:none;border-bottom:1px solid var(--line);margin-right:0;padding:18px 0}
+    .mat:last-child{border-bottom:none}
+  }
+  @media(max-width:680px){
+    .nav-links,.nav .btn{display:none}
+    .burger{display:flex}
+    .nav-links.mobile{
+      display:flex;flex-direction:column;position:absolute;top:74px;left:0;right:0;
+      background:var(--steel-900);border-bottom:1px solid var(--line);padding:24px;gap:20px;
+    }
+    .nav-links.mobile .btn{display:inline-flex;width:100%;justify-content:center}
+    section{padding:72px 0}
+    .grid-metier{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr}
+    .hero-specs{gap:16px}
+    .spec{border-right:none;padding-right:0;margin-right:0;flex:1 0 40%}
+    .gallery{grid-auto-rows:150px}
+    figure.shot.wide{grid-column:span 1}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important}
+    html{scroll-behavior:auto}
+    .reveal{opacity:1;transform:none;transition:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="hdr">
+  <div class="wrap nav">
+    <a href="#top" class="brand" aria-label="Soudeur 66 - accueil">
+      <span class="plate"><img src="assets/img/logo.png" alt="Soudeur 66"></span>
+    </a>
+    <nav class="nav-links" id="navlinks">
+      <a href="#metier">Métier</a>
+      <a href="#realisations">Réalisations</a>
+      <a href="#methode">Méthode</a>
+      <a href="#contact">Contact</a>
+      <a href="tel:+33769008168" class="btn btn-primary">Demander un devis</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg">
+    <img src="assets/img/cordon-tig.jpg" alt="Cordon de soudure TIG sur une bride en inox">
+  </div>
+  <div class="hero-inner">
+    <div class="wrap">
+      <span class="eyebrow">Artisan soudeur · Perpignan (66)</span>
+      <h1>Soudure, chaudronnerie &amp; <span class="hl">tuyauterie inox</span> à Perpignan.</h1>
+      <p class="lead">Inox, aluminium, acier. Fabrication sur mesure, réparation et soudure sur site. Du cordon TIG propre qui tient, à l'atelier comme chez vous.</p>
+      <div class="hero-cta">
+        <a href="tel:+33769008168" class="btn btn-primary">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          07 69 00 81 68
+        </a>
+        <a href="#realisations" class="btn btn-ghost">Voir les réalisations</a>
+      </div>
+      <div class="hero-specs">
+        <div class="spec"><div class="k">Procédés</div><div class="v">TIG · MIG / MAG</div></div>
+        <div class="spec"><div class="k">Matières</div><div class="v">Inox · Alu · Acier</div></div>
+        <div class="spec"><div class="k">Intervention</div><div class="v">Atelier &amp; sur site</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MÉTIER -->
+<section id="metier">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Savoir-faire</span>
+      <h2>Ce qui sort de l'atelier</h2>
+      <p>De la pièce unitaire à l'ensemble complet, tout est étudié, formé et soudé sur mesure selon votre besoin.</p>
+    </div>
+    <div class="grid-metier">
+      <div class="card reveal">
+        <span class="num">// 01</span>
+        <h3>Chaudronnerie inox</h3>
+        <p>Cuves, réservoirs, viroles et fonds bombés. Capacités sur mesure pour l'agroalimentaire, le vin et le traitement de l'eau.</p>
+      </div>
+      <div class="card reveal">
+        <span class="num">// 02</span>
+        <h3>Tuyauterie industrielle</h3>
+        <p>Réseaux process inox : coudes, piquages, brides et raccords clamp. Préfabrication en atelier ou montage sur place.</p>
+      </div>
+      <div class="card reveal">
+        <span class="num">// 03</span>
+        <h3>Soudure TIG &amp; MIG/MAG</h3>
+        <p>Inox, aluminium et acier. Cordons propres et étanches, sur tôle fine comme sur forte épaisseur.</p>
+      </div>
+      <div class="card reveal">
+        <span class="num">// 04</span>
+        <h3>Ensembles &amp; skids</h3>
+        <p>Châssis, supports et skids process complets, intégrant pompes, vannes et instrumentation, prêts à raccorder.</p>
+      </div>
+      <div class="card reveal">
+        <span class="num">// 05</span>
+        <h3>Garde-corps &amp; escaliers</h3>
+        <p>Métallerie inox sur mesure pour terrasses, balcons et intérieurs. Finition polie ou brossée.</p>
+      </div>
+      <div class="card reveal">
+        <span class="num">// 06</span>
+        <h3>Réparation &amp; sur site</h3>
+        <p>Reprise de soudure, rechargement et réparation de pièces (godets, structures acier), à l'atelier ou directement chez vous.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MATÉRIAUX -->
+<section class="materiaux">
+  <div class="wrap">
+    <div class="sec-head reveal" style="margin-bottom:38px">
+      <span class="eyebrow">Matières maîtrisées</span>
+    </div>
+    <div class="mat-grid">
+      <div class="mat reveal">
+        <span class="code">AISI 304 / 316L</span>
+        <h3>Inox</h3>
+        <p>Le cœur du métier. Idéal pour l'alimentaire, l'eau et les milieux corrosifs, avec une finition soignée.</p>
+      </div>
+      <div class="mat reveal">
+        <span class="code">SÉRIES 5000 / 6000</span>
+        <h3>Aluminium</h3>
+        <p>Léger et résistant. Soudure TIG maîtrisée sur pièces et structures aluminium.</p>
+      </div>
+      <div class="mat reveal">
+        <span class="code">S235 / S355</span>
+        <h3>Acier</h3>
+        <p>Structures, mécano-soudure et réparation. Solide, robuste, fait pour durer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RÉALISATIONS -->
+<section id="realisations">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Réalisations</span>
+      <h2>Quelques pièces sorties de l'atelier</h2>
+      <p>Un aperçu de travaux récents en inox, aluminium et acier. Cliquez pour agrandir.</p>
+    </div>
+
+    <div class="filters reveal" id="filters">
+      <button class="chip active" data-filter="all">Tout</button>
+      <button class="chip" data-filter="chaudronnerie">Chaudronnerie</button>
+      <button class="chip" data-filter="tuyauterie">Tuyauterie</button>
+      <button class="chip" data-filter="metallerie">Métallerie</button>
+      <button class="chip" data-filter="reparation">Réparation</button>
+    </div>
+
+    <div class="gallery" id="gallery">
+      <!-- les figures sont générées en JS -->
+    </div>
+  </div>
+</section>
+
+<!-- MÉTHODE -->
+<section class="methode" id="methode">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Méthode</span>
+      <h2>Comment on travaille</h2>
+      <p>Une façon de faire simple et carrée, du premier échange à la pièce livrée.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="st-num">01</div>
+        <h3>Échange &amp; étude</h3>
+        <p>On parle de votre besoin : plans, croquis ou pièce existante, matière et délais.</p>
+      </div>
+      <div class="step reveal">
+        <div class="st-num">02</div>
+        <h3>Devis clair</h3>
+        <p>Un devis détaillé et sans surprise, validé avant de lancer quoi que ce soit.</p>
+      </div>
+      <div class="step reveal">
+        <div class="st-num">03</div>
+        <h3>Fabrication</h3>
+        <p>Découpe, formage, soudure et contrôle en atelier, avec le souci du détail.</p>
+      </div>
+      <div class="step reveal">
+        <div class="st-num">04</div>
+        <h3>Pose ou livraison</h3>
+        <p>Montage sur site ou livraison de la pièce, prête à l'emploi.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <span class="eyebrow">Contact</span>
+        <h2 style="font-family:'Archivo';font-weight:800;font-size:clamp(2rem,4vw,2.9rem);margin:18px 0 8px">Un projet, une pièce, une réparation&nbsp;?</h2>
+        <p style="color:var(--txt-mut);margin-bottom:26px">Décrivez votre besoin, je reviens vers vous rapidement avec un devis.</p>
+
+        <a class="row" href="tel:+33769008168">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+          <span><span class="lbl">Téléphone</span><span class="val">07 69 00 81 68</span></span>
+        </a>
+        <a class="row" href="mailto:soudur66@gmail.com">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>
+          <span><span class="lbl">E-mail</span><span class="val">soudur66@gmail.com</span></span>
+        </a>
+        <div class="row">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <span><span class="lbl">Zone d'intervention</span><span class="val" style="cursor:default">Perpignan &amp; Pyrénées-Orientales</span></span>
+        </div>
+
+        <div class="socials">
+          <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-1.66 0-3 1.34-3 3v2H9v3h2v7h3v-7h2.5l.5-3H14V9c0-.55.45-1 1-1z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <form id="contactForm">
+          <div class="fld">
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" name="nom" required placeholder="Votre nom">
+          </div>
+          <div class="fld">
+            <label for="tel">Téléphone</label>
+            <input type="tel" id="tel" name="tel" placeholder="Pour être rappelé">
+          </div>
+          <div class="fld">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" placeholder="vous@exemple.fr">
+          </div>
+          <div class="fld">
+            <label for="msg">Votre besoin</label>
+            <textarea id="msg" name="msg" required placeholder="Décrivez la pièce, la matière, les quantités, les délais..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Envoyer la demande</button>
+          <p class="form-note">Réponse en général sous 24–48 h ouvrées.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <span class="plate"><img src="assets/img/logo.png" alt="Soudeur 66"></span>
+        <p>Artisan soudeur à Perpignan. Spécialités inox, aluminium et acier — chaudronnerie, tuyauterie, métallerie et réparation.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Métier</h4>
+        <a href="#metier">Chaudronnerie inox</a>
+        <a href="#metier">Tuyauterie industrielle</a>
+        <a href="#metier">Garde-corps &amp; escaliers</a>
+        <a href="#metier">Réparation &amp; sur site</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <a href="tel:+33769008168">07 69 00 81 68</a>
+        <a href="mailto:soudur66@gmail.com">soudur66@gmail.com</a>
+        <span>Perpignan (66)</span>
+      </div>
+    </div>
+    <div class="bead" style="margin:36px 0 0;opacity:.5"></div>
+    <div class="foot-bot">
+      <span>© <span id="year"></span> Soudeur 66 — Tous droits réservés. · <a href="#" id="mentions">Mentions légales</a></span>
+      <span>Site conçu par <a href="https://milan-sec.github.io/" target="_blank" rel="noopener">Milan Obradors</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lightbox">
+  <button class="lb-btn lb-close" id="lbClose" aria-label="Fermer">&times;</button>
+  <button class="lb-btn lb-prev" id="lbPrev" aria-label="Précédent">&#8249;</button>
+  <img id="lbImg" src="" alt="">
+  <button class="lb-btn lb-next" id="lbNext" aria-label="Suivant">&#8250;</button>
+  <div class="lb-cap" id="lbCap"></div>
+</div>
+
+<!-- Données structurées SEO -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"LocalBusiness",
+  "name":"Soudeur 66",
+  "description":"Artisan soudeur à Perpignan : chaudronnerie inox, tuyauterie industrielle, métallerie et réparation. Soudure TIG et MIG/MAG sur inox, aluminium et acier.",
+  "telephone":"+33769008168",
+  "email":"soudur66@gmail.com",
+  "address":{"@type":"PostalAddress","addressLocality":"Perpignan","postalCode":"66000","addressCountry":"FR"},
+  "areaServed":"Pyrénées-Orientales (66)",
+  "knowsAbout":["Soudure TIG","Soudure MIG MAG","Chaudronnerie inox","Tuyauterie industrielle","Garde-corps inox"]
+}
+</script>
+
+<script>
+  // données galerie
+  const shots = [
+    {f:'skid-process',      cat:'chaudronnerie', tag:'Chaudronnerie', cap:'Skid process multi-réservoirs', cls:'wide'},
+    {f:'coude-tuyauterie',  cat:'tuyauterie',    tag:'Tuyauterie',    cap:'Coude de tuyauterie inox à brides', cls:'wide'},
+    {f:'cuve-couvercle',    cat:'chaudronnerie', tag:'Chaudronnerie', cap:'Cuve inox à couvercle bombé', cls:'tall'},
+    {f:'serpentin-inox',    cat:'tuyauterie',    tag:'Tuyauterie',    cap:'Serpentin / échangeur inox', cls:''},
+    {f:'cordon-tig',        cat:'chaudronnerie', tag:'Soudure TIG',   cap:'Cordon TIG sur bride inox', cls:''},
+    {f:'garde-corps-1',     cat:'metallerie',    tag:'Métallerie',    cap:'Garde-corps inox de terrasse', cls:'tall'},
+    {f:'cuve-interieur',    cat:'chaudronnerie', tag:'Chaudronnerie', cap:'Fond de cuve et piquages soudés', cls:''},
+    {f:'reservoirs-3',      cat:'chaudronnerie', tag:'Chaudronnerie', cap:'Réservoirs inox cylindriques', cls:''},
+    {f:'escalier-inox',     cat:'metallerie',    tag:'Métallerie',    cap:'Escalier avec rampe inox', cls:'tall'},
+    {f:'godet-reparation',  cat:'reparation',    tag:'Réparation',    cap:'Réparation de godet de pelle', cls:''},
+    {f:'tubes-inox',        cat:'tuyauterie',    tag:'Tuyauterie',    cap:'Tubes inox à raccords clamp', cls:'wide'},
+    {f:'cuves-chassis',     cat:'chaudronnerie', tag:'Chaudronnerie', cap:'Cuves sur châssis avec pompe', cls:''},
+    {f:'corps-pompe',       cat:'chaudronnerie', tag:'Chaudronnerie', cap:'Corps mécano-soudé multi-brides', cls:''},
+    {f:'garde-corps-2',     cat:'metallerie',    tag:'Métallerie',    cap:'Garde-corps inox, vue jardin', cls:''},
+    {f:'pergola',           cat:'metallerie',    tag:'Métallerie',    cap:'Pergola acier découpe laser', cls:'wide'},
+    {f:'filtre-cuve',       cat:'chaudronnerie', tag:'Chaudronnerie', cap:'Filtre / cuve inox sur pied', cls:'tall'},
+    {f:'bouteilles-inox',   cat:'chaudronnerie', tag:'Chaudronnerie', cap:'Petits réservoirs inox', cls:''},
+    {f:'piece-usinee',      cat:'chaudronnerie', tag:'Chaudronnerie', cap:'Ensemble circulaire mécano-soudé', cls:''},
+    {f:'garde-corps-3',     cat:'metallerie',    tag:'Métallerie',    cap:"Garde-corps d'escalier intérieur", cls:''},
+    {f:'piece-deco',        cat:'reparation',    tag:'Acier',         cap:'Pièces décoratives acier', cls:''}
+  ];
+
+  const gallery = document.getElementById('gallery');
+  shots.forEach((s,i)=>{
+    const fig = document.createElement('figure');
+    fig.className = 'shot ' + s.cls;
+    fig.dataset.cat = s.cat;
+    fig.dataset.idx = i;
+    fig.innerHTML =
+      '<img src="assets/img/'+s.f+'.jpg" alt="'+s.cap+'" loading="lazy">' +
+      '<figcaption><span class="tag">'+s.tag+'</span>'+s.cap+'</figcaption>';
+    gallery.appendChild(fig);
+  });
+
+  // filtres
+  const chips = document.querySelectorAll('.chip');
+  chips.forEach(c=>c.addEventListener('click',()=>{
+    chips.forEach(x=>x.classList.remove('active'));
+    c.classList.add('active');
+    const f = c.dataset.filter;
+    document.querySelectorAll('figure.shot').forEach(fig=>{
+      fig.classList.toggle('hide', !(f==='all' || fig.dataset.cat===f));
+    });
+  }));
+
+  // lightbox
+  const lb=document.getElementById('lightbox'), lbImg=document.getElementById('lbImg'),
+        lbCap=document.getElementById('lbCap');
+  let cur=0;
+  function visibleFigs(){return [...document.querySelectorAll('figure.shot:not(.hide)')];}
+  function openLb(fig){
+    const list=visibleFigs(); cur=list.indexOf(fig); showLb();
+    lb.classList.add('open'); document.body.style.overflow='hidden';
+  }
+  function showLb(){
+    const list=visibleFigs(); if(!list.length)return;
+    const idx=parseInt(list[cur].dataset.idx); const s=shots[idx];
+    lbImg.src='assets/img/'+s.f+'.jpg'; lbImg.alt=s.cap;
+    lbCap.innerHTML='<span class="tag">'+s.tag+'</span>'+s.cap;
+  }
+  function move(d){const list=visibleFigs(); cur=(cur+d+list.length)%list.length; showLb();}
+  function closeLb(){lb.classList.remove('open'); document.body.style.overflow='';}
+  gallery.addEventListener('click',e=>{const fig=e.target.closest('figure.shot'); if(fig)openLb(fig);});
+  document.getElementById('lbClose').onclick=closeLb;
+  document.getElementById('lbNext').onclick=()=>move(1);
+  document.getElementById('lbPrev').onclick=()=>move(-1);
+  lb.addEventListener('click',e=>{if(e.target===lb)closeLb();});
+  document.addEventListener('keydown',e=>{
+    if(!lb.classList.contains('open'))return;
+    if(e.key==='Escape')closeLb();
+    if(e.key==='ArrowRight')move(1);
+    if(e.key==='ArrowLeft')move(-1);
+  });
+
+  // header scroll
+  const hdr=document.getElementById('hdr');
+  window.addEventListener('scroll',()=>hdr.classList.toggle('scrolled',window.scrollY>20));
+
+  // menu mobile
+  const burger=document.getElementById('burger'), nav=document.getElementById('navlinks');
+  burger.addEventListener('click',()=>nav.classList.toggle('mobile'));
+  nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('mobile')));
+
+  // reveal au scroll
+  const io=new IntersectionObserver((ents)=>{
+    ents.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in'); io.unobserve(en.target);}});
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // formulaire -> ouvre l'email pré-rempli (aucun serveur requis)
+  document.getElementById('contactForm').addEventListener('submit',e=>{
+    e.preventDefault();
+    const nom=document.getElementById('nom').value;
+    const tel=document.getElementById('tel').value;
+    const email=document.getElementById('email').value;
+    const msg=document.getElementById('msg').value;
+    const sujet=encodeURIComponent('Demande de devis - '+nom);
+    const corps=encodeURIComponent('Nom : '+nom+'\nTéléphone : '+tel+'\nE-mail : '+email+'\n\n'+msg);
+    window.location.href='mailto:soudur66@gmail.com?subject='+sujet+'&body='+corps;
+  });
+
+  document.getElementById('year').textContent=new Date().getFullYear();
+  document.getElementById('mentions').addEventListener('click',e=>{
+    e.preventDefault();
+    alert('Soudeur 66\nPerpignan (66)\n07 69 00 81 68 — soudur66@gmail.com\n\n[ SIRET et forme juridique à compléter ]');
+  });
+</script>
+</body>
+</html>
