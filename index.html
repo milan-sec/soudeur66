@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Soudeur 66 — Soudure, chaudronnerie & tuyauterie inox à Perpignan</title>
 <meta name="description" content="Artisan soudeur à Perpignan (66). Chaudronnerie inox, tuyauterie industrielle, cuves sur mesure, garde-corps et escaliers, réparation. Soudure TIG et MIG/MAG sur inox, aluminium et acier.">
-<meta name="theme-color" content="#14181c">
+<meta name="theme-color" content="#ffffff">
 <link rel="icon" type="image/png" href="assets/img/favicon.png">
 
 <meta property="og:type" content="website">
@@ -19,21 +19,22 @@
 
 <style>
   :root{
-    --steel-950:#14181c;
-    --steel-900:#1a2026;
-    --steel-850:#1f262d;
-    --steel-800:#272f37;
-    --steel-700:#36414b;
-    --line:#2c353d;
-    --txt:#e8edf1;
-    --txt-mut:#9aa6b0;
-    --txt-dim:#6c7882;
-    /* couleurs de revenu de l'inox (heat tint) */
-    --gold:#d9a441;
-    --rose:#cf7351;
-    --violet:#8071b8;
-    --blue:#3f88bf;
-    --bead:linear-gradient(90deg,#d9a441 0%,#cf7351 32%,#8071b8 64%,#3f88bf 100%);
+    /* thème bleu & blanc */
+    --steel-950:#ffffff;   /* fond page */
+    --steel-900:#f3f7fc;   /* bandes / panneaux clairs */
+    --steel-850:#ffffff;   /* cartes, champs */
+    --steel-800:#eaf1f9;
+    --steel-700:#c8d6e6;   /* bordures marquées */
+    --line:#dce6f1;        /* bordures fines */
+    --txt:#0f2c49;         /* texte principal (navy) */
+    --txt-mut:#4a6178;     /* texte secondaire */
+    --txt-dim:#7188a0;     /* libellés discrets */
+    /* accent bleu (repris du chalumeau du logo) */
+    --gold:#1d6fc0;        /* accent principal (nommé gold pour compat, = bleu) */
+    --rose:#2f83d4;
+    --violet:#0d4c92;
+    --blue:#1d6fc0;
+    --bead:linear-gradient(90deg,#6bb3ee 0%,#2f83d4 40%,#1d6fc0 70%,#0d4c92 100%);
     --maxw:1180px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
@@ -73,15 +74,15 @@
   /* ---------- header ---------- */
   header{
     position:fixed;top:0;left:0;right:0;z-index:50;
-    background:rgba(20,24,28,.6);backdrop-filter:blur(12px);
+    background:rgba(255,255,255,.72);backdrop-filter:blur(12px);
     border-bottom:1px solid transparent;transition:background .3s,border-color .3s;
   }
-  header.scrolled{background:rgba(20,24,28,.92);border-bottom:1px solid var(--line)}
+  header.scrolled{background:rgba(255,255,255,.94);border-bottom:1px solid var(--line);box-shadow:0 2px 14px rgba(15,44,73,.06)}
   .nav{display:flex;align-items:center;justify-content:space-between;height:74px}
   .brand{display:flex;align-items:center;gap:0}
   .plate{
-    background:#f3f5f7;border-radius:8px;padding:7px 12px;
-    display:flex;align-items:center;box-shadow:0 2px 10px rgba(0,0,0,.35);
+    background:transparent;border-radius:8px;padding:0;
+    display:flex;align-items:center;
   }
   .plate img{height:30px;width:auto}
   .nav-links{display:flex;align-items:center;gap:34px}
@@ -95,8 +96,8 @@
     padding:12px 20px;border-radius:9px;cursor:pointer;border:none;
     display:inline-flex;align-items:center;gap:9px;transition:transform .15s,box-shadow .2s,background .2s;
   }
-  .btn-primary{background:var(--bead);color:#16191d}
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(207,115,81,.32)}
+  .btn-primary{background:var(--bead);color:#fff}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(29,111,192,.35)}
   .btn-ghost{background:transparent;color:var(--txt);border:1px solid var(--steel-700)}
   .btn-ghost:hover{border-color:var(--gold);color:#fff}
   .nav .btn{padding:11px 18px}
@@ -111,9 +112,16 @@
   .hero-bg::after{
     content:"";position:absolute;inset:0;
     background:
-      linear-gradient(90deg,rgba(20,24,28,.96) 0%,rgba(20,24,28,.82) 42%,rgba(20,24,28,.45) 100%),
-      linear-gradient(0deg,rgba(20,24,28,.95) 0%,transparent 45%);
+      linear-gradient(90deg,rgba(9,30,54,.93) 0%,rgba(9,30,54,.74) 45%,rgba(9,30,54,.42) 100%),
+      linear-gradient(0deg,rgba(9,30,54,.55) 0%,transparent 45%);
   }
+  .hero-inner .eyebrow{color:rgba(255,255,255,.72)}
+  .hero-inner h1{color:#fff}
+  .hero-inner .lead{color:rgba(255,255,255,.85)}
+  .hero-specs{border-top-color:rgba(255,255,255,.22)}
+  .hero-inner .spec{border-right-color:rgba(255,255,255,.18)}
+  .hero-inner .spec .k{color:rgba(255,255,255,.6)}
+  .hero-inner .spec .v{color:#fff}
   .hero-inner{position:relative;z-index:2;width:100%;padding:60px 0}
   .hero h1{
     font-weight:900;font-size:clamp(2.5rem,6.5vw,5rem);margin:22px 0 0;max-width:16ch;
@@ -140,10 +148,11 @@
   .card{
     background:linear-gradient(180deg,var(--steel-850),var(--steel-900));
     border:1px solid var(--line);border-radius:16px;padding:30px 28px;
+    box-shadow:0 1px 3px rgba(15,44,73,.05);
     transition:transform .25s,border-color .25s,box-shadow .25s;position:relative;overflow:hidden;
   }
   .card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--bead);transform:scaleX(0);transform-origin:left;transition:transform .35s}
-  .card:hover{transform:translateY(-5px);border-color:var(--steel-700);box-shadow:0 18px 40px rgba(0,0,0,.4)}
+  .card:hover{transform:translateY(-5px);border-color:var(--steel-700);box-shadow:0 18px 40px rgba(15,44,73,.13)}
   .card:hover::before{transform:scaleX(1)}
   .card .num{font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:var(--gold);letter-spacing:.1em}
   .card h3{font-weight:700;font-size:1.32rem;margin:14px 0 12px}
@@ -166,7 +175,7 @@
     padding:9px 16px;border-radius:999px;cursor:pointer;transition:.2s;
   }
   .chip:hover{color:var(--txt);border-color:var(--steel-700)}
-  .chip.active{background:var(--bead);color:#16191d;border-color:transparent;font-weight:500}
+  .chip.active{background:var(--bead);color:#fff;border-color:transparent;font-weight:500}
 
   .gallery{
     display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
@@ -178,12 +187,12 @@
   }
   figure.shot.wide{grid-column:span 2}
   figure.shot.tall{grid-row:span 3}
-  figure.shot img{width:100%;height:100%;object-fit:cover;transition:transform .5s,filter .3s;filter:grayscale(.12) brightness(.94)}
-  figure.shot:hover img{transform:scale(1.06);filter:grayscale(0) brightness(1)}
+  figure.shot img{width:100%;height:100%;object-fit:cover;transition:transform .5s,filter .3s;filter:saturate(.98)}
+  figure.shot:hover img{transform:scale(1.06);filter:saturate(1.05)}
   figure.shot figcaption{
     position:absolute;left:0;right:0;bottom:0;padding:34px 16px 14px;
-    background:linear-gradient(0deg,rgba(15,18,21,.92),transparent);
-    font-size:.85rem;color:var(--txt);opacity:0;transform:translateY(8px);transition:.3s;
+    background:linear-gradient(0deg,rgba(9,30,54,.92),transparent);
+    font-size:.85rem;color:#fff;opacity:0;transform:translateY(8px);transition:.3s;
   }
   figure.shot figcaption .tag{font-family:'IBM Plex Mono',monospace;font-size:.68rem;color:var(--gold);letter-spacing:.12em;display:block;text-transform:uppercase;margin-bottom:3px}
   figure.shot:hover figcaption{opacity:1;transform:none}
@@ -212,7 +221,7 @@
   .contact-info .val:hover{color:var(--gold)}
   .socials{display:flex;gap:12px;margin-top:24px}
   .socials a{width:42px;height:42px;border-radius:10px;background:var(--steel-850);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--txt-mut);transition:.2s}
-  .socials a:hover{color:#fff;border-color:var(--gold);transform:translateY(-2px)}
+  .socials a:hover{color:var(--gold);border-color:var(--gold);transform:translateY(-2px)}
   .socials svg{width:19px;height:19px}
 
   form{background:var(--steel-850);border:1px solid var(--line);border-radius:16px;padding:30px}
@@ -244,8 +253,8 @@
   .lb{position:fixed;inset:0;z-index:100;background:rgba(10,12,14,.95);display:none;align-items:center;justify-content:center}
   .lb.open{display:flex}
   .lb img{max-width:90vw;max-height:82vh;border-radius:8px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
-  .lb-cap{position:absolute;bottom:28px;left:0;right:0;text-align:center;color:var(--txt);font-size:.95rem}
-  .lb-cap .tag{font-family:'IBM Plex Mono',monospace;color:var(--gold);font-size:.72rem;letter-spacing:.14em;display:block;margin-bottom:4px;text-transform:uppercase}
+  .lb-cap{position:absolute;bottom:28px;left:0;right:0;text-align:center;color:#fff;font-size:.95rem}
+  .lb-cap .tag{font-family:'IBM Plex Mono',monospace;color:#7cc0f5;font-size:.72rem;letter-spacing:.14em;display:block;margin-bottom:4px;text-transform:uppercase}
   .lb-btn{position:absolute;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:#fff;width:50px;height:50px;border-radius:50%;cursor:pointer;font-size:1.4rem;display:flex;align-items:center;justify-content:center;transition:.2s}
   .lb-btn:hover{background:rgba(255,255,255,.18)}
   .lb-close{top:22px;right:22px}
