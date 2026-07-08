@@ -112,16 +112,19 @@
   .hero-bg::after{
     content:"";position:absolute;inset:0;
     background:
-      linear-gradient(90deg,rgba(9,30,54,.93) 0%,rgba(9,30,54,.74) 45%,rgba(9,30,54,.42) 100%),
-      linear-gradient(0deg,rgba(9,30,54,.55) 0%,transparent 45%);
+      linear-gradient(90deg,rgba(7,24,45,.96) 0%,rgba(7,24,45,.86) 42%,rgba(7,24,45,.58) 100%),
+      linear-gradient(0deg,rgba(7,24,45,.8) 0%,rgba(7,24,45,.2) 55%,transparent 72%);
   }
-  .hero-inner .eyebrow{color:rgba(255,255,255,.72)}
-  .hero-inner h1{color:#fff}
-  .hero-inner .lead{color:rgba(255,255,255,.85)}
-  .hero-specs{border-top-color:rgba(255,255,255,.22)}
-  .hero-inner .spec{border-right-color:rgba(255,255,255,.18)}
-  .hero-inner .spec .k{color:rgba(255,255,255,.6)}
-  .hero-inner .spec .v{color:#fff}
+  .hero-inner .eyebrow{color:rgba(255,255,255,.82)}
+  .hero-inner h1{color:#fff;text-shadow:0 2px 22px rgba(3,12,26,.6)}
+  .hero-inner h1 .hl{background:linear-gradient(90deg,#a5d4f8,#5aa6ee);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero-inner .lead{color:#eaf1fb;text-shadow:0 1px 16px rgba(3,12,26,.65)}
+  .hero-inner .btn-ghost{color:#fff;border-color:rgba(255,255,255,.45);background:rgba(255,255,255,.06)}
+  .hero-inner .btn-ghost:hover{border-color:var(--gold);color:#fff;background:rgba(255,255,255,.12)}
+  .hero-specs{border-top-color:rgba(255,255,255,.28)}
+  .hero-inner .spec{border-right-color:rgba(255,255,255,.22)}
+  .hero-inner .spec .k{color:rgba(255,255,255,.7)}
+  .hero-inner .spec .v{color:#fff;text-shadow:0 1px 12px rgba(3,12,26,.5)}
   .hero-inner{position:relative;z-index:2;width:100%;padding:60px 0}
   .hero h1{
     font-weight:900;font-size:clamp(2.5rem,6.5vw,5rem);margin:22px 0 0;max-width:16ch;
@@ -166,6 +169,18 @@
   .mat .code{font-family:'IBM Plex Mono',monospace;color:var(--blue);font-size:.8rem;letter-spacing:.12em}
   .mat h3{font-weight:800;font-size:1.7rem;margin:6px 0 8px}
   .mat p{color:var(--txt-mut);font-size:.93rem}
+
+  /* l'atelier / à propos */
+  .about{background:var(--steel-900);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+  .about-photo{border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 18px 40px rgba(15,44,73,.14)}
+  .about-photo img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/3}
+  .about-txt h2{font-weight:800;font-size:clamp(1.8rem,3.4vw,2.6rem);margin:16px 0 6px}
+  .about-txt p{color:var(--txt-mut);margin-top:14px;font-size:1.02rem}
+  .about-points{list-style:none;margin-top:24px;display:grid;gap:13px}
+  .about-points li{display:flex;gap:11px;align-items:flex-start;font-size:.98rem;color:var(--txt)}
+  .about-points li::before{content:"✓";color:var(--gold);font-weight:800;flex:none}
+  @media(max-width:900px){.about-grid{grid-template-columns:1fr;gap:26px}}
 
   /* réalisations */
   .filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:30px}
@@ -216,8 +231,8 @@
     display:flex;align-items:center;justify-content:center;color:var(--gold);
   }
   .contact-info .ic svg{width:20px;height:20px}
-  .contact-info .lbl{font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.14em;color:var(--txt-dim);text-transform:uppercase}
-  .contact-info .val{font-family:'Archivo',sans-serif;font-weight:700;font-size:1.2rem;margin-top:2px}
+  .contact-info .lbl{display:block;font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.14em;color:var(--txt-dim);text-transform:uppercase;margin-bottom:3px}
+  .contact-info .val{display:block;font-family:'Archivo',sans-serif;font-weight:700;font-size:1.2rem;line-height:1.25}
   .contact-info .val:hover{color:var(--gold)}
   .socials{display:flex;gap:12px;margin-top:24px}
   .socials a{width:42px;height:42px;border-radius:10px;background:var(--steel-850);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--txt-mut);transition:.2s}
@@ -308,6 +323,7 @@
     <nav class="nav-links" id="navlinks">
       <a href="#metier">Métier</a>
       <a href="#realisations">Réalisations</a>
+      <a href="#atelier">L'atelier</a>
       <a href="#methode">Méthode</a>
       <a href="#contact">Contact</a>
       <a href="tel:+33769008168" class="btn btn-primary">Demander un devis</a>
@@ -411,6 +427,28 @@
   </div>
 </section>
 
+<!-- L'ATELIER -->
+<section class="about" id="atelier">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-photo reveal">
+        <img src="assets/img/atelier-meulage.jpg" alt="Artisan soudeur au travail dans son atelier à Perpignan">
+      </div>
+      <div class="about-txt reveal">
+        <span class="eyebrow">L'atelier</span>
+        <h2>Un artisan, pas une chaîne</h2>
+        <p>Chaque pièce est pensée, formée et soudée à la main, avec le souci du détail et une vraie exigence de finition. Basé à Perpignan, l'atelier travaille l'inox, l'aluminium et l'acier, aussi bien pour les professionnels que pour les particuliers.</p>
+        <p>Un seul interlocuteur, du premier échange à la livraison : c'est plus simple, plus clair, et le travail est soigné du début à la fin.</p>
+        <ul class="about-points">
+          <li>Soudure TIG &amp; MIG/MAG maîtrisée sur inox, alu et acier</li>
+          <li>Fabrication sur mesure, à l'unité ou en petite série</li>
+          <li>Intervention en atelier ou directement sur votre site</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- RÉALISATIONS -->
 <section id="realisations">
   <div class="wrap">
@@ -424,6 +462,7 @@
       <button class="chip active" data-filter="all">Tout</button>
       <button class="chip" data-filter="chaudronnerie">Chaudronnerie</button>
       <button class="chip" data-filter="tuyauterie">Tuyauterie</button>
+      <button class="chip" data-filter="chantier">Sur site</button>
       <button class="chip" data-filter="metallerie">Métallerie</button>
       <button class="chip" data-filter="reparation">Réparation</button>
     </div>
@@ -484,8 +523,12 @@
           <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>
           <span><span class="lbl">E-mail</span><span class="val">soudur66@gmail.com</span></span>
         </a>
-        <div class="row">
+        <a class="row" href="https://www.google.com/maps/search/?api=1&query=548+rue+Blanche+Selva+66000+Perpignan" target="_blank" rel="noopener">
           <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <span><span class="lbl">Atelier</span><span class="val">548 rue Blanche Selva, 66000 Perpignan</span></span>
+        </a>
+        <div class="row">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/></svg></span>
           <span><span class="lbl">Zone d'intervention</span><span class="val" style="cursor:default">Perpignan &amp; Pyrénées-Orientales</span></span>
         </div>
 
@@ -544,7 +587,8 @@
         <h4>Contact</h4>
         <a href="tel:+33769008168">07 69 00 81 68</a>
         <a href="mailto:soudur66@gmail.com">soudur66@gmail.com</a>
-        <span>Perpignan (66)</span>
+        <span>548 rue Blanche Selva</span>
+        <span>66000 Perpignan</span>
       </div>
     </div>
     <div class="bead" style="margin:36px 0 0;opacity:.5"></div>
@@ -573,7 +617,7 @@
   "description":"Artisan soudeur à Perpignan : chaudronnerie inox, tuyauterie industrielle, métallerie et réparation. Soudure TIG et MIG/MAG sur inox, aluminium et acier.",
   "telephone":"+33769008168",
   "email":"soudur66@gmail.com",
-  "address":{"@type":"PostalAddress","addressLocality":"Perpignan","postalCode":"66000","addressCountry":"FR"},
+  "address":{"@type":"PostalAddress","streetAddress":"548 rue Blanche Selva","addressLocality":"Perpignan","postalCode":"66000","addressCountry":"FR"},
   "areaServed":"Pyrénées-Orientales (66)",
   "knowsAbout":["Soudure TIG","Soudure MIG MAG","Chaudronnerie inox","Tuyauterie industrielle","Garde-corps inox"]
 }
@@ -584,6 +628,8 @@
   const shots = [
     {f:'skid-process',      cat:'chaudronnerie', tag:'Chaudronnerie', cap:'Skid process multi-réservoirs', cls:'wide'},
     {f:'coude-tuyauterie',  cat:'tuyauterie',    tag:'Tuyauterie',    cap:'Coude de tuyauterie inox à brides', cls:'wide'},
+    {f:'chantier-reseau-1', cat:'chantier',      tag:'Sur site',      cap:'Réseau de chaleur, soudure sur site', cls:'wide'},
+    {f:'chantier-reseau-3', cat:'chantier',      tag:'Sur site',      cap:'Brides et vanne sur conduite acier', cls:'tall'},
     {f:'cuve-couvercle',    cat:'chaudronnerie', tag:'Chaudronnerie', cap:'Cuve inox à couvercle bombé', cls:'tall'},
     {f:'serpentin-inox',    cat:'tuyauterie',    tag:'Tuyauterie',    cap:'Serpentin / échangeur inox', cls:''},
     {f:'cordon-tig',        cat:'chaudronnerie', tag:'Soudure TIG',   cap:'Cordon TIG sur bride inox', cls:''},
@@ -593,6 +639,10 @@
     {f:'escalier-inox',     cat:'metallerie',    tag:'Métallerie',    cap:'Escalier avec rampe inox', cls:'tall'},
     {f:'godet-reparation',  cat:'reparation',    tag:'Réparation',    cap:'Réparation de godet de pelle', cls:''},
     {f:'tubes-inox',        cat:'tuyauterie',    tag:'Tuyauterie',    cap:'Tubes inox à raccords clamp', cls:'wide'},
+    {f:'chantier-reseau-2', cat:'chantier',      tag:'Sur site',      cap:'Conduites isolées raccordées en tranchée', cls:'wide'},
+    {f:'chantier-reseau-4', cat:'chantier',      tag:'Sur site',      cap:'Coudes soudés sur réseau enterré', cls:''},
+    {f:'chantier-reseau-5', cat:'chantier',      tag:'Sur site',      cap:'Double conduite à brides en tranchée', cls:'tall'},
+    {f:'chantier-reseau-6', cat:'chantier',      tag:'Sur site',      cap:'Réseau multitube isolé — Perpignan', cls:'wide'},
     {f:'cuves-chassis',     cat:'chaudronnerie', tag:'Chaudronnerie', cap:'Cuves sur châssis avec pompe', cls:''},
     {f:'corps-pompe',       cat:'chaudronnerie', tag:'Chaudronnerie', cap:'Corps mécano-soudé multi-brides', cls:''},
     {f:'garde-corps-2',     cat:'metallerie',    tag:'Métallerie',    cap:'Garde-corps inox, vue jardin', cls:''},
@@ -686,7 +736,7 @@
   document.getElementById('year').textContent=new Date().getFullYear();
   document.getElementById('mentions').addEventListener('click',e=>{
     e.preventDefault();
-    alert('Soudeur 66\nPerpignan (66)\n07 69 00 81 68 — soudur66@gmail.com\n\n[ SIRET et forme juridique à compléter ]');
+    alert('Soudeur 66\n548 rue Blanche Selva, 66000 Perpignan\n07 69 00 81 68 — soudur66@gmail.com\n\n[ SIRET et forme juridique à compléter ]');
   });
 </script>
 </body>
