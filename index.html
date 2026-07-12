@@ -85,6 +85,7 @@
     display:flex;align-items:center;
   }
   .plate img{height:30px;width:auto}
+  .nav .plate img{height:48px}
   .nav-links{display:flex;align-items:center;gap:34px}
   .nav-links a{font-size:.92rem;color:var(--txt-mut);transition:color .2s;position:relative}
   .nav-links a:hover{color:var(--txt)}
@@ -562,7 +563,8 @@
       </div>
 
       <div class="reveal">
-        <form id="contactForm">
+        <form id="contactForm" novalidate>
+          <input type="hidden" name="_subject" value="Nouvelle demande de devis — Soudeur 66">
           <div class="fld">
             <label for="nom">Nom</label>
             <input type="text" id="nom" name="nom" required placeholder="Votre nom">
@@ -579,8 +581,9 @@
             <label for="msg">Votre besoin</label>
             <textarea id="msg" name="msg" required placeholder="Décrivez la pièce, la matière, les quantités, les délais..."></textarea>
           </div>
-          <button type="submit" class="btn btn-primary">Envoyer la demande</button>
-          <p class="form-note">Réponse en général sous 24–48 h ouvrées.</p>
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
+          <button type="submit" class="btn btn-primary" id="formBtn">Envoyer la demande</button>
+          <p class="form-note" id="formNote">Réponse en général sous 24–48 h ouvrées.</p>
         </form>
       </div>
     </div>
@@ -757,16 +760,48 @@
   },{threshold:.12});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-  // formulaire -> ouvre l'email pré-rempli (aucun serveur requis)
-  document.getElementById('contactForm').addEventListener('submit',e=>{
+  // ===== FORMULAIRE DE CONTACT =====
+  // 1) Crée un formulaire gratuit sur https://formspree.io (destinataire : soudur66@gmail.com)
+  // 2) Copie l'ID du formulaire et remplace VOTRE_ID ci-dessous
+  const FORM_ENDPOINT = "https://formspree.io/f/VOTRE_ID";
+
+  const form = document.getElementById('contactForm');
+  const note = document.getElementById('formNote');
+  const btn  = document.getElementById('formBtn');
+
+  form.addEventListener('submit', async (e)=>{
     e.preventDefault();
-    const nom=document.getElementById('nom').value;
-    const tel=document.getElementById('tel').value;
-    const email=document.getElementById('email').value;
-    const msg=document.getElementById('msg').value;
-    const sujet=encodeURIComponent('Demande de devis - '+nom);
-    const corps=encodeURIComponent('Nom : '+nom+'\nTéléphone : '+tel+'\nE-mail : '+email+'\n\n'+msg);
-    window.location.href='mailto:soudur66@gmail.com?subject='+sujet+'&body='+corps;
+
+    // tant que Formspree n'est pas configuré : on ouvre l'email pré-rempli
+    if(FORM_ENDPOINT.includes('VOTRE_ID')){
+      const sujet=encodeURIComponent('Demande de devis - '+document.getElementById('nom').value);
+      const corps=encodeURIComponent('Nom : '+document.getElementById('nom').value+'\nTéléphone : '+document.getElementById('tel').value+'\nE-mail : '+document.getElementById('email').value+'\n\n'+document.getElementById('msg').value);
+      window.location.href='mailto:soudur66@gmail.com?subject='+sujet+'&body='+corps;
+      return;
+    }
+
+    if(!form.checkValidity()){ form.reportValidity(); return; }
+
+    const label = btn.textContent;
+    btn.disabled = true; btn.textContent = 'Envoi…';
+    try{
+      const res = await fetch(FORM_ENDPOINT, {
+        method:'POST', headers:{'Accept':'application/json'}, body:new FormData(form)
+      });
+      if(res.ok){
+        form.reset();
+        note.textContent = 'Merci ! Votre demande a bien été envoyée.';
+        note.style.color = 'var(--blue)';
+      }else{
+        note.textContent = "L'envoi a échoué. Réessayez ou appelez le 07 69 00 81 68.";
+        note.style.color = '#c0392b';
+      }
+    }catch(err){
+      note.textContent = "Erreur réseau. Réessayez ou appelez le 07 69 00 81 68.";
+      note.style.color = '#c0392b';
+    }finally{
+      btn.disabled = false; btn.textContent = label;
+    }
   });
 
   document.getElementById('year').textContent=new Date().getFullYear();
